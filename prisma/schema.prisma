@@ -39,7 +39,7 @@ model TrainingExperience {
   shortDescription String
   startDate        DateTime
   endDate          DateTime?
-  thumbnail        Bytes?
+  thumbnail        String?
 }
 
 model JobExperience {
@@ -48,7 +48,7 @@ model JobExperience {
   shortDescription String
   startDate        DateTime
   endDate          DateTime?
-  thumbnail        Bytes?
+  thumbnail        String?
 }
 
 model ProjectExperience {
@@ -60,8 +60,8 @@ model ProjectExperience {
   isFavorite       Boolean     @default(false)
   startDate        DateTime
   endDate          DateTime?
-  thumbnail        Bytes?
-  images           Bytes[]
+  thumbnail        String?
+  images           String[]
   projectLink      String?
   codeLink         String?
   hardSkills       HardSkill[]

@@ -1,17 +1,17 @@
 @import "tailwindcss";
 
 @font-face {
-  font-family: 'Kodchasan-Regular';
+  font-family: "Kodchasan-Regular";
   src: url(../fonts/Kodchasan-Regular.ttf);
   font-display: swap;
 }
 @font-face {
-  font-family: 'Kodchasan-Medium';
-  src:  url(../fonts/Kodchasan-Medium.ttf);
+  font-family: "Kodchasan-Medium";
+  src: url(../fonts/Kodchasan-Medium.ttf);
   font-display: swap;
 }
 @font-face {
-  font-family: 'Kodchasan-Bold';
+  font-family: "Kodchasan-Bold";
   src: url(../fonts/Kodchasan-Bold.ttf);
   font-display: swap;
 }
@@ -20,63 +20,110 @@
   --color-primary: #1282a2;
   --color-dark-primary: #12728d;
   --color-light-primary: #97ccdb;
-  --color-secondary:  #be8242;
-  --color-false: #d85b3f;
-  --color-true: #739b2d;
+  --color-secondary: #be8242;
+  --color-false: #df7d68;
+  --color-warning: #dfb968;
+  --color-true: #b5c19a;
   --color-light: #efefef;
   --color-dark: #2d2d2d;
   --color-grey-1: #7a7a7a;
   --color-grey-2: #b8b8b8;
   --color-grey-3: #e0e0e0;
 
-  --font-primary-regular:  Kodchasan-Regular, Arial;
+  --font-primary-regular: Kodchasan-Regular, Arial;
   --font-primary-medium: Kodchasan-Medium, Arial;
-  --font-primary-bold:  Kodchasan-Bold, Arial;
+  --font-primary-bold: Kodchasan-Bold, Arial;
 }
 
 @layer base {
-    * {
-        @apply font-primary-regular text-dark leading-7;
-    }
+  body {
+    @apply bg-light font-primary-regular text-dark leading-7;
+  }
 
-    body {
-        @apply bg-light;
-    }
+  main {
+    @apply min-h-[calc(100vh-100px)] mt-[100px];
+  }
 
-    main {
-        @apply min-h-screen;
-    }
+  .min-h-minus-header {
+    @apply min-h-[calc(100vh-100px)];
+  }
 
-    a,
-    a:visited {
-        @apply font-primary-bold;
-    }
-    a:hover {
-        @apply text-secondary;
-    }
+  a,
+  a:visited {
+    @apply font-primary-bold;
+  }
+  a:hover {
+    @apply text-secondary;
+  }
 
-    strong {
-        @apply font-primary-bold font-normal;
-    }
+  strong {
+    @apply font-primary-bold font-normal;
+  }
+
+  input:not([type="checkbox"]),
+  select,
+  textarea {
+    @apply bg-grey-3 border-2 border-light rounded-lg resize-none w-full px-4 py-2;
+  }
+
+  label {
+    @apply font-bold;
+  }
+
+  input:not([type="checkbox"]):focus,
+  select:focus,
+  textarea:focus {
+    @apply border-primary;
+  }
 }
 
 @layer utilities {
-    .large-title {
-        @apply font-primary-bold text-2xl tracking-widest text-center;
-    }
-    .medium-title {
-        @apply font-primary-bold text-xl tracking-widest text-center;
-    }
-    .small-title {
-        @apply font-primary-bold text-lg tracking-widest;
-    }
+  .large-title {
+    @apply font-primary-bold text-2xl tracking-widest text-center;
+  }
+  .medium-title {
+    @apply font-primary-bold text-xl tracking-widest text-center;
+  }
+  .small-title {
+    @apply font-primary-bold text-lg tracking-widest;
+  }
 }
 
 @layer components {
-    .button {
-        @apply cursor-pointer inline-block text-center py-4 w-10/12 md:w-auto px-0 md:px-16 bg-primary text-xs rounded-lg text-light tracking-wider font-primary-bold uppercase;
-    }
-    .button:hover {
-        @apply bg-secondary text-light;
-    }
+  .button {
+    @apply cursor-pointer text-center py-4 px-16 text-xs rounded-lg text-light font-primary-bold uppercase;
+    @apply bg-primary;
+  }
+  .button:hover,
+  .cancel-button:hover,
+  .danger-button:hover {
+    @apply bg-secondary;
+  }
+
+  .danger-button {
+    @apply cursor-pointer text-center py-4 px-16 text-xs rounded-lg text-light font-primary-bold uppercase;
+    @apply bg-false;
+  }
+
+  .cancel-button {
+    @apply cursor-pointer text-center py-4 px-16 text-xs rounded-lg text-light font-primary-bold uppercase;
+    @apply bg-grey-1;
+  }
+
+  .small-button {
+    @apply cursor-pointer inline-block text-center py-2 px-6 bg-primary text-xs rounded-lg text-light tracking-wider font-primary-bold uppercase;
+  }
+
+  .choice-button {
+    @apply cursor-pointer bg-grey-1 text-light inline-block text-center py-2 w-9/12 md:w-60 text-sm rounded-lg;
+  }
+  .choice-button:hover {
+    @apply bg-grey-2;
+  }
+  .choice-button--active {
+    @apply bg-primary;
+  }
+  .choice-button--active:hover {
+    @apply bg-light-primary;
+  }
 }
