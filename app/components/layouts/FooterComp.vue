@@ -4,10 +4,14 @@
   >
     <div class="flex space-x-10">
       <a href="https://www.linkedin.com/in/rudy-dupuis/" target="_blank">
-        <LinkedinLogoSvg class="fill-light hover:fill-secondary" />
+        <i
+          class="fa-brands fa-linkedin text-4xl text-light hover:text-secondary"
+        />
       </a>
       <a href="https://github.com/RudyDupuis" target="_blank">
-        <GithubLogoSvg class="fill-light hover:fill-secondary" />
+        <i
+          class="fa-brands fa-square-github text-4xl text-light hover:text-secondary"
+        />
       </a>
     </div>
 
