@@ -25,7 +25,7 @@
     "nuxt-gtag": "^4.1.0",
     "pg": "^8.16.3",
     "tailwindcss": "^4.1.18",
-    "vue": "^3.5.26",
+    "vue": "^3.5.27",
     "vue-router": "^4.6.4"
   },
   "devDependencies": {
