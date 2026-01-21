@@ -30,12 +30,13 @@ onMounted(() => {
 </script>
 
 <template>
-  <div
+  <Snackbar
     v-if="askForConsent"
-    class="fixed bottom-4 right-4 bg-primary text-light p-4 rounded shadow-lg mx-6"
-  >
-    Des cookies sont utilisés par Google Analitycs pour mesurer le trafic.
-    <button class="ml-4 underline" @click="acceptCookies">Accepter</button>
-    <button class="ml-4 underline" @click="refuseCookies">Refuser</button>
-  </div>
+    type="info"
+    message="Des cookies sont utilisés par Google Analitycs pour mesurer le trafic."
+    :buttons="[
+      { title: 'Accepter', action: acceptCookies },
+      { title: 'Refuser', action: refuseCookies }
+    ]"
+  />
 </template>

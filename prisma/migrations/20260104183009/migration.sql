@@ -27,7 +27,7 @@ CREATE TABLE "TrainingExperience" (
     "shortDescription" TEXT NOT NULL,
     "startDate" TIMESTAMP(3) NOT NULL,
     "endDate" TIMESTAMP(3),
-    "thumbnail" BYTEA,
+    "thumbnail" TEXT,
 
     CONSTRAINT "TrainingExperience_pkey" PRIMARY KEY ("id")
 );
@@ -39,7 +39,7 @@ CREATE TABLE "JobExperience" (
     "shortDescription" TEXT NOT NULL,
     "startDate" TIMESTAMP(3) NOT NULL,
     "endDate" TIMESTAMP(3),
-    "thumbnail" BYTEA,
+    "thumbnail" TEXT,
 
     CONSTRAINT "JobExperience_pkey" PRIMARY KEY ("id")
 );
@@ -54,8 +54,8 @@ CREATE TABLE "ProjectExperience" (
     "isFavorite" BOOLEAN NOT NULL DEFAULT false,
     "startDate" TIMESTAMP(3) NOT NULL,
     "endDate" TIMESTAMP(3),
-    "thumbnail" BYTEA,
-    "images" BYTEA[],
+    "thumbnail" TEXT,
+    "images" TEXT[],
     "projectLink" TEXT,
     "codeLink" TEXT,
 

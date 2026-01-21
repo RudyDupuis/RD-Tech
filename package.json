@@ -6,14 +6,15 @@
     "build": "nuxt build",
     "dev": "nuxt dev",
     "ci": "nuxt prepare",
-    "fix": "prettier --write . && eslint . --fix",
+    "fix": "prettier --write . && eslint . --fix && npx nuxi typecheck",
     "db:generate": "prisma generate",
     "db:migrate": "prisma migrate deploy",
     "db:migrate:add": "prisma migrate dev",
     "db:reset": "prisma migrate reset --force",
     "db:studio": "prisma studio",
     "analyse:check": "eslint",
-    "format:check": "prettier --check ."
+    "format:check": "prettier --check .",
+    "typescript:check": "npx nuxi typecheck"
   },
   "dependencies": {
     "@nuxt/eslint": "^1.12.1",
@@ -26,7 +27,8 @@
     "pg": "^8.17.1",
     "tailwindcss": "^4.1.18",
     "vue": "^3.5.27",
-    "vue-router": "^4.6.4"
+    "vue-router": "^4.6.4",
+    "zod": "^4.2.1"
   },
   "devDependencies": {
     "@types/pg": "^8.16.0",

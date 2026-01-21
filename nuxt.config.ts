@@ -15,8 +15,26 @@ export default defineNuxtConfig({
       pathPrefix: false
     }
   ],
+  imports: {
+    dirs: ["utils/**", "../utils/**"]
+  },
+  nitro: {
+    imports: {
+      dirs: ["utils/**", "server/utils/**"]
+    }
+  },
   gtag: {
     initMode: "manual",
     id: "G-VSNBTJ5G4B"
+  },
+  app: {
+    head: {
+      script: [
+        {
+          src: "https://kit.fontawesome.com/49aa64a243.js",
+          crossorigin: "anonymous"
+        }
+      ]
+    }
   }
 });

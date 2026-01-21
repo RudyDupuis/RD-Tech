@@ -25,7 +25,7 @@ const copyEmail = () => {
 
 <template>
   <main class="flex flex-col items-center justify-center px-10 space-y-10">
-    <h1 class="large-title pt-20">Me Contacter</h1>
+    <h1 class="large-title">Me Contacter</h1>
     <div class="flex flex-col items-center justify-center space-y-3">
       <p class="text-center">Vous pouvez me contacter à cette adresse mail :</p>
       <a :href="'mailto:' + emailAddress">{{ emailAddress }}</a>

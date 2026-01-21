@@ -21,8 +21,9 @@
   --color-dark-primary: #12728d;
   --color-light-primary: #97ccdb;
   --color-secondary: #be8242;
-  --color-false: #d85b3f;
-  --color-true: #739b2d;
+  --color-false: #df7d68;
+  --color-warning: #dfb968;
+  --color-true: #b5c19a;
   --color-light: #efefef;
   --color-dark: #2d2d2d;
   --color-grey-1: #7a7a7a;
@@ -35,16 +36,16 @@
 }
 
 @layer base {
-  * {
-    @apply font-primary-regular text-dark leading-7;
-  }
-
   body {
-    @apply bg-light;
+    @apply bg-light font-primary-regular text-dark leading-7;
   }
 
   main {
-    @apply min-h-screen;
+    @apply min-h-[calc(100vh-100px)] mt-[100px];
+  }
+
+  .min-h-minus-header {
+    @apply min-h-[calc(100vh-100px)];
   }
 
   a,
@@ -57,6 +58,22 @@
 
   strong {
     @apply font-primary-bold font-normal;
+  }
+
+  input:not([type="checkbox"]),
+  select,
+  textarea {
+    @apply bg-grey-3 border-2 border-light rounded-lg resize-none w-full px-4 py-2;
+  }
+
+  label {
+    @apply font-bold;
+  }
+
+  input:not([type="checkbox"]):focus,
+  select:focus,
+  textarea:focus {
+    @apply border-primary;
   }
 }
 
@@ -74,9 +91,26 @@
 
 @layer components {
   .button {
-    @apply cursor-pointer inline-block text-center py-4 w-10/12 md:w-auto px-0 md:px-16 bg-primary text-xs rounded-lg text-light tracking-wider font-primary-bold uppercase;
+    @apply cursor-pointer text-center py-4 px-16 text-xs rounded-lg text-light font-primary-bold uppercase;
+    @apply bg-primary;
   }
-  .button:hover {
-    @apply bg-secondary text-light;
+  .button:hover,
+  .cancel-button:hover,
+  .danger-button:hover {
+    @apply bg-secondary;
+  }
+
+  .danger-button {
+    @apply cursor-pointer text-center py-4 px-16 text-xs rounded-lg text-light font-primary-bold uppercase;
+    @apply bg-false;
+  }
+
+  .cancel-button {
+    @apply cursor-pointer text-center py-4 px-16 text-xs rounded-lg text-light font-primary-bold uppercase;
+    @apply bg-grey-1;
+  }
+
+  .small-button {
+    @apply cursor-pointer inline-block text-center py-2 px-6 bg-primary text-xs rounded-lg text-light tracking-wider font-primary-bold uppercase;
   }
 }

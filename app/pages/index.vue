@@ -17,7 +17,7 @@ const isSmallScreen = useIsSmallScreen();
   <main>
     <section
       id="hero-banner"
-      class="flex min-h-screen items-center justify-evenly"
+      class="flex min-h-minus-header items-center justify-evenly"
     >
       <template v-if="isDefined(isSmallScreen)">
         <div class="flex flex-col items-center justify-around space-y-10">
@@ -28,10 +28,7 @@ const isSmallScreen = useIsSmallScreen();
         </div>
         <ToolsboxAnimComp v-if="!isSmallScreen" />
       </template>
-      <div
-        v-else
-        class="loader border-4 border-t-4 border-t-light border-primary rounded-full w-10 h-10 mx-auto animate-spin"
-      />
+      <Loader v-else />
     </section>
 
     <section
