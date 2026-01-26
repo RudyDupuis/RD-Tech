@@ -152,9 +152,11 @@ const filteredHardSkills = computed<Array<HardSkill>>(() => {
         <div
           class="grid grid-cols-3 sm:grid-cols-5 md:grid-cols-7 lg:grid-cols-10 gap-4"
         >
-          <div class="flex flex-col items-center">
+          <div
+            v-for="(hardSkill, index) in filteredHardSkills"
+            class="flex flex-col items-center"
+          >
             <SvgDisplayer
-              v-for="(hardSkill, index) in filteredHardSkills"
               :key="index"
               :svg="hardSkill.svg"
               :size="60"
@@ -176,9 +178,11 @@ const filteredHardSkills = computed<Array<HardSkill>>(() => {
         <div
           class="grid grid-cols-3 sm:grid-cols-5 md:grid-cols-7 lg:grid-cols-10 gap-4"
         >
-          <div class="flex flex-col items-center">
+          <div
+            v-for="(softSkill, index) in softSkills"
+            class="flex flex-col items-center"
+          >
             <SvgDisplayer
-              v-for="(softSkill, index) in softSkills"
               :key="index"
               :svg="softSkill.svg"
               :size="60"
