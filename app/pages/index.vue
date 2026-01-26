@@ -159,7 +159,9 @@ const filteredHardSkills = computed<Array<HardSkill>>(() => {
               :svg="hardSkill.svg"
               :size="60"
               :class="
-                hardSkill.mastery === 'advanced' ? 'fill-primary' : 'fill-grey-1'
+                hardSkill.mastery === 'advanced'
+                  ? 'fill-primary'
+                  : 'fill-grey-1'
               "
             />
             <span class="text-sm">{{ hardSkill.name }}</span>
