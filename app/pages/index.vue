@@ -154,10 +154,10 @@ const filteredHardSkills = computed<Array<HardSkill>>(() => {
         >
           <div
             v-for="(hardSkill, index) in filteredHardSkills"
+            :key="index"
             class="flex flex-col items-center"
           >
             <SvgDisplayer
-              :key="index"
               :svg="hardSkill.svg"
               :size="60"
               :class="
@@ -180,14 +180,10 @@ const filteredHardSkills = computed<Array<HardSkill>>(() => {
         >
           <div
             v-for="(softSkill, index) in softSkills"
+            :key="index"
             class="flex flex-col items-center"
           >
-            <SvgDisplayer
-              :key="index"
-              :svg="softSkill.svg"
-              :size="60"
-              class="fill-grey-1"
-            />
+            <SvgDisplayer :svg="softSkill.svg" :size="60" class="fill-grey-1" />
             <span class="text-sm">{{ softSkill.name }}</span>
           </div>
         </div>
