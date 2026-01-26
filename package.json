@@ -18,7 +18,7 @@
     "update": "npx npm-check-updates -u && npm install"
   },
   "dependencies": {
-    "@nuxt/eslint": "^1.12.1",
+    "@nuxt/eslint": "^1.13.0",
     "@prisma/adapter-pg": "^7.3.0",
     "@prisma/client": "^7.3.0",
     "@tailwindcss/vite": "^4.1.18",
