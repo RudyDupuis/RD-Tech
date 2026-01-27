@@ -22,7 +22,10 @@ const projectExperience = defineModel<EditProjectExperience>({
     @change="
       projectExperience.slug = projectExperience.name
         .toLowerCase()
-        .replace(/\s+/g, '-')
+        .normalize('NFD') // decompose accented characters
+        .replace(/[\u0300-\u036f]/g, '') // remove accents
+        .replace(/[^a-z0-9]+/g, '-') // replace all non a-z or 0-9 characters with dashes
+        .replace(/^-+|-+$/g, '') // remove leading or trailing dashes
     "
   />
 
