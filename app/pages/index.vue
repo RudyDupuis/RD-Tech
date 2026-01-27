@@ -15,15 +15,17 @@ useHead({
 
 const isSmallScreen = useIsSmallScreen();
 
-const { data: hardSkills, isLoading: hardskillIsLoading } = useFetchData<
+const { data: hardSkills, isLoading: isLoadingHardSkills } = useFetchData<
   Array<HardSkill>
 >("/api/hard-skills", z.array(hardSkillSchema));
-const { data: softSkills, isLoading: softskillIsLoading } = useFetchData<
+const { data: softSkills, isLoading: isLoadingSoftSkills } = useFetchData<
   Array<SoftSkill>
 >("/api/soft-skills", z.array(softSkillSchema));
-const { data: favoriteProjects, isLoading: experienceIsLoading } = useFetchData<
-  Array<ProjectExperience>
->("/api/project-experiences/favorites", z.array(projectExperienceSchema));
+const { data: favoriteProjects, isLoading: isLoadingFavoriteProjects } =
+  useFetchData<Array<ProjectExperience>>(
+    "/api/project-experiences/favorites",
+    z.array(projectExperienceSchema)
+  );
 
 const hardSkillsFilter = ref<Mastery | undefined>(undefined);
 function toggleFilter(filter: Mastery) {
@@ -152,25 +154,19 @@ const filteredHardSkills = computed<Array<HardSkill>>(() => {
         <div
           class="grid grid-cols-3 sm:grid-cols-5 md:grid-cols-7 lg:grid-cols-10 gap-4"
         >
-          <div
-            v-for="(hardSkill, index) in filteredHardSkills"
+          <SkillDisplayer
+            v-for="(hardSkill, index) in filteredHardSkills.sort((a, b) =>
+              a.name.localeCompare(b.name)
+            )"
             :key="index"
-            class="flex flex-col items-center"
-          >
-            <SvgDisplayer
-              :svg="hardSkill.svg"
-              :size="60"
-              :class="
-                hardSkill.mastery === 'advanced'
-                  ? 'fill-primary'
-                  : 'fill-grey-1'
-              "
-            />
-            <span class="text-sm">{{ hardSkill.name }}</span>
-          </div>
+            :skill="hardSkill"
+            :svg-class="
+              hardSkill.mastery === 'advanced' ? 'fill-primary' : 'fill-grey-1'
+            "
+          />
         </div>
         <FetchDataDisplayer
-          :is-loading="hardskillIsLoading"
+          :is-loading="isLoadingHardSkills"
           :has-data="filteredHardSkills.length !== 0"
         />
 
@@ -178,17 +174,17 @@ const filteredHardSkills = computed<Array<HardSkill>>(() => {
         <div
           class="grid grid-cols-3 sm:grid-cols-5 md:grid-cols-7 lg:grid-cols-10 gap-4"
         >
-          <div
-            v-for="(softSkill, index) in softSkills"
+          <SkillDisplayer
+            v-for="(softSkill, index) in softSkills?.sort((a, b) =>
+              a.name.localeCompare(b.name)
+            )"
             :key="index"
-            class="flex flex-col items-center"
-          >
-            <SvgDisplayer :svg="softSkill.svg" :size="60" class="fill-grey-1" />
-            <span class="text-sm">{{ softSkill.name }}</span>
-          </div>
+            :skill="softSkill"
+            :svg-class="'fill-grey-1'"
+          />
         </div>
         <FetchDataDisplayer
-          :is-loading="softskillIsLoading"
+          :is-loading="isLoadingSoftSkills"
           :has-data="isDefined(softSkills) && softSkills.length !== 0"
         />
       </div>
@@ -207,7 +203,7 @@ const filteredHardSkills = computed<Array<HardSkill>>(() => {
         />
       </div>
       <FetchDataDisplayer
-        :is-loading="experienceIsLoading"
+        :is-loading="isLoadingFavoriteProjects"
         :has-data="isDefined(favoriteProjects) && favoriteProjects.length !== 0"
       />
       <router-link :to="{ name: 'mon-parcours' }" class="button mb-4">

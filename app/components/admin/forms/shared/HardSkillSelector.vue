@@ -80,8 +80,7 @@ function removeHardSkillId(id: HardSkill["id"]) {
         class="fa-solid fa-trash text-false cursor-pointer hover:text-secondary"
         @click="removeHardSkillId(hardSkillId)"
       />
-      <SvgDisplayer :svg="findHardSkillById(hardSkillId)!.svg" />
-      <span class="text-sm">{{ findHardSkillById(hardSkillId)!.name }}</span>
+      <SkillDisplayer :skill="findHardSkillById(hardSkillId)" />
     </li>
   </ul>
 </template>

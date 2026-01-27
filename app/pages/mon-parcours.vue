@@ -38,6 +38,7 @@ const experiencesFilter = ref<undefined | "project" | "job" | "training">(
 const projectsFilter = ref<Array<HardSkill["id"]>>([]);
 
 const filteredExperiences = computed<Array<Experience>>(() => {
+  const experiences: Experience[] = [];
   const projectExperienceArray = projectExperiences.value ?? [];
   const jobExperienceArray = jobExperiences.value ?? [];
   const trainingExperienceArray = trainingExperiences.value ?? [];
@@ -45,24 +46,35 @@ const filteredExperiences = computed<Array<Experience>>(() => {
   if (projectsFilter.value.length === 0) {
     switch (experiencesFilter.value) {
       case "project":
-        return projectExperienceArray;
+        experiences.push(...projectExperienceArray);
+        break;
       case "job":
-        return jobExperienceArray;
+        experiences.push(...jobExperienceArray);
+        break;
       case "training":
-        return trainingExperienceArray;
+        experiences.push(...trainingExperienceArray);
+        break;
       default:
-        return [
+        experiences.push(
           ...projectExperienceArray,
           ...jobExperienceArray,
           ...trainingExperienceArray
-        ];
+        );
     }
+  } else {
+    experiences.push(
+      ...projectExperienceArray.filter((project: ProjectExperience) =>
+        projectsFilter.value.every((hardSkillfilterId) =>
+          project.hardSkills.some(
+            (hardSkill) => hardSkill.id === hardSkillfilterId
+          )
+        )
+      )
+    );
   }
 
-  return projectExperienceArray.filter((project: ProjectExperience) =>
-    projectsFilter.value.every((hardSkillfilterId) =>
-      project.hardSkills.some((hardSkill) => hardSkill.id === hardSkillfilterId)
-    )
+  return experiences.sort(
+    (a, b) => b.startDate.getTime() - a.startDate.getTime()
   );
 });
 
@@ -140,13 +152,15 @@ const hasExperiencesData = computed<boolean>(() => {
       <div
         class="grid grid-cols-3 sm:grid-cols-5 md:grid-cols-7 lg:grid-cols-10 xl:grid-cols-12 gap-4"
       >
-        <SvgDisplayer
-          v-for="(hardSkill, index) in hardSkills"
+        <SkillDisplayer
+          v-for="(hardSkill, index) in hardSkills?.sort((a, b) =>
+            a.name.localeCompare(b.name)
+          )"
           :key="index"
-          :svg="hardSkill.svg"
+          :skill="hardSkill"
           :size="40"
           class="cursor-pointer hover:opacity-50"
-          :class="
+          :svg-class="
             projectsFilter.includes(hardSkill.id)
               ? 'fill-primary'
               : 'fill-grey-1'

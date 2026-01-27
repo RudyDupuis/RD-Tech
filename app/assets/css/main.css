@@ -60,6 +60,10 @@
     @apply font-primary-bold font-normal;
   }
 
+  pre {
+    @apply font-primary-regular;
+  }
+
   input:not([type="checkbox"]),
   select,
   textarea {

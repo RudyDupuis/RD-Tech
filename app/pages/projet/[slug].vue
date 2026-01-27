@@ -103,12 +103,13 @@ function handleCarousel(direction: "right" | "left") {
       <div>
         <h3 class="small-title mb-5">Technologie utilisées :</h3>
         <div class="grid grid-cols-3 md:grid-cols-6 gap-4">
-          <SvgDisplayer
-            v-for="(hardSkill, index) in projectExperience.hardSkills"
+          <SkillDisplayer
+            v-for="(hardSkill, index) in projectExperience.hardSkills.sort(
+              (a, b) => a.name.localeCompare(b.name)
+            )"
             :key="index"
-            :svg="hardSkill.svg"
-            :size="40"
-            class="fill-grey-1"
+            :skill="hardSkill"
+            :svg-class="'fill-grey-1'"
           />
         </div>
       </div>
