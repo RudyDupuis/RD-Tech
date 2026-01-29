@@ -1,7 +1,5 @@
-FROM node:24-alpine
+FROM node:25-alpine
 
 WORKDIR /app
 
-RUN apk add --no-cache git openssh-client
-
-EXPOSE 3000
+RUN apk add --no-cache git openssh-client 
