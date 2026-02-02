@@ -24,7 +24,7 @@
     "@tailwindcss/vite": "^4.1.18",
     "eslint": "^9.39.2",
     "nuxt": "^4.2.2",
-    "nuxt-auth-utils": "^0.5.27",
+    "nuxt-auth-utils": "^0.5.28",
     "nuxt-gtag": "^4.1.0",
     "pg": "^8.17.2",
     "tailwindcss": "^4.1.18",
